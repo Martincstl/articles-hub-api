@@ -13,9 +13,8 @@ class BaseRepository(Generic[ModelT]):
         self.db = db
         self.model = model
 
-    def get_by_id(self, instance: ModelT) -> ModelT:
-        self.db.add(instance)
-        return instance
+    def get_by_id(self, id: uuid.UUID | int) -> ModelT | None:
+        return self.db.get(self.model.id)
 
     def add(self,instance:ModelT) -> ModelT:
         self.db.add(instance)

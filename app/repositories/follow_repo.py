@@ -28,7 +28,7 @@ class FollowRepository(BaseRepository[Follow]):
     ) -> bool:
         stmt = select(
             exists().where(
-                Follow.follower_id == following_id,
+                Follow.follower_id == follower_id,
                 Follow.following_id == following_id,
             )
         )

@@ -1,3 +1,5 @@
+import uuid
+
 from sqlalchemy import select
 from sqlalchemy.orm import Session, selectinload
 
@@ -6,7 +8,7 @@ from app.models.article import Article
 from app.models.article_section import ArticleSection
 from app.repositories.base import BaseRepository
 
-class ArticleRepository(BaseRepository):
+class ArticleRepository(BaseRepository[Article]):
     def __init__(self, db: Session) -> None:
         super().__init__(db, Article)
 
@@ -20,7 +22,7 @@ class ArticleRepository(BaseRepository):
         )
         return self.db.scalar(stmt)
 
-    def get_with_tree(self, article_id) -> Article | None:
+    def get_with_tree(self, article_id: uuid.UUID) -> Article | None:
         stmt = (
             select(Article)
             .where(Article.id == article_id)
@@ -38,3 +40,4 @@ class ArticleRepository(BaseRepository):
             .limit(limit)
             .offset(offset)
         )
+        return list(self.db.scalars(stmt).all())
