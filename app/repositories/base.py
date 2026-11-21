@@ -8,7 +8,7 @@ from app.models.base import Base
 
 ModelT = TypeVar("ModelT", bound=Base)
 
-class BaseRpository(Generic[ModelT]):
+class BaseRepository(Generic[ModelT]):
     def __init__(self, db: Session, model: type[ModelT]) -> None:
         self.db = db
         self.model = model

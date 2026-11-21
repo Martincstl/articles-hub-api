@@ -2,9 +2,9 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.models.user import User
-from app.repositories.base import BaseRpository
+from app.repositories.base import BaseRepository
 
-class UserRpository(BaseRpository[User]):
+class UserRpository(BaseRepository[User]):
     def __init__(self, db: Session) -> None:
         super().__init__(db, User)
 
