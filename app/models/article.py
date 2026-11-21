@@ -11,7 +11,7 @@ from base import Base, TimestampMixin, UUIDPrimaryKeyMixin
 
 if TYPE_CHECKING:
     from article_like import ArticleLike
-    from article_section import Section
+    from article_section import ArticleSection
     from user import User
 
 class Article(UUIDPrimaryKeyMixin, TimestampMixin, Base):
@@ -45,10 +45,10 @@ class Article(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     )
 
     author: Mapped["User"] = relationship(back_populates="articles")
-    sections: Mapped[list["Section"]] = relationship(
+    sections: Mapped[list["ArticleSection"]] = relationship(
         back_populates="article",
         cascade="all, delete-orphan",
-        order_by="Section.position",
+        order_by="ArticleSection.position",
     )
     likes: Mapped[list["ArticleLike"]] = relationship(
         back_populates="article",
