@@ -21,13 +21,13 @@ class Follow(UUIDPrimaryKeyMixin, Base):
 
     follower_id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True),
-        ForeignKey("user.user_id", ondelete="CASCADE"),
+        ForeignKey("user.id", ondelete="CASCADE"),
         index=True,
         nullable=False,
     )
     following_id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True),
-        ForeignKey("user.user_id", ondelete="CASCADE"),
+        ForeignKey("user.id", ondelete="CASCADE"),
         index=True,
         nullable=False,
     )
