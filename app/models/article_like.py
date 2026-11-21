@@ -5,11 +5,11 @@ from sqlalchemy import ForeignKey, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from base import Base, UUIDPrimaryKeyMixin
+from app.models.base import Base, UUIDPrimaryKeyMixin
 
 if TYPE_CHECKING:
-    from article import Article
-    from user import User
+    from app.models.article import Article
+    from app.models.user import User
 
 
 class ArticleLike(UUIDPrimaryKeyMixin, Base):

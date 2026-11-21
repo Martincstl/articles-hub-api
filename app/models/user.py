@@ -3,13 +3,13 @@ from typing import TYPE_CHECKING
 from sqlalchemy import Boolean, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from base import Base, TimestampMixin, UUIDPrimaryKeyMixin
+from app.models.base import Base, TimestampMixin, UUIDPrimaryKeyMixin
 
 if TYPE_CHECKING:
-    from article import Article
-    from article_like import ArticleLike
-    from follow import Follow
-    from refresh_token import RefreshToken
+    from app.models.article import Article
+    from app.models.article_like import ArticleLike
+    from app.models.follow import Follow
+    from app.models.refresh_token import RefreshToken
 
 class User (UUIDPrimaryKeyMixin, TimestampMixin, Base):
     __tablename__ = "user"

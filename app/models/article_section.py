@@ -8,8 +8,8 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.models.base import Base, TimestampMixin, UUIDPrimaryKeyMixin
 
 if TYPE_CHECKING:
-    from article import Article
-    from content_block import ContentBlock
+    from app.models.article import Article
+    from app.models.content_block import ContentBlock
 
 
 class ArticleSection(UUIDPrimaryKeyMixin, TimestampMixin, Base):

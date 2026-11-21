@@ -6,13 +6,13 @@ from sqlalchemy import DateTime, Enum as SAEnum, ForeignKey, String, Text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from domain.enums import ArticleStatus
-from base import Base, TimestampMixin, UUIDPrimaryKeyMixin
+from app.domain.enums import ArticleStatus
+from app.models.base import Base, TimestampMixin, UUIDPrimaryKeyMixin
 
 if TYPE_CHECKING:
-    from article_like import ArticleLike
-    from article_section import ArticleSection
-    from user import User
+    from app.models.article_like import ArticleLike
+    from app.models.article_section import ArticleSection
+    from app.models.user import User
 
 class Article(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     __tablename__ = "article"

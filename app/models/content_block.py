@@ -5,16 +5,16 @@ from sqlalchemy import Enum as SAEnum, ForeignKey, Integer, String, Text, Unique
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from domain.enums import BlockType
-from base import Base, TimestampMixin, UUIDPrimaryKeyMixin
+from app.domain.enums import BlockType
+from app.models.base import Base, TimestampMixin, UUIDPrimaryKeyMixin
 
 if TYPE_CHECKING:
-    from article_section import ArticleSection
+    from app.models.article_section import ArticleSection
 
 class ContentBlock(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     __tablename__ = "content_block"
     __table_args__ = (
-        UniqueConstraint("section_id", "position", name="uq_content_block_section_position")
+        UniqueConstraint("section_id", "position", name="uq_content_block_section_position"),
     )
     
     section_id: Mapped[uuid.UUID] = mapped_column(
