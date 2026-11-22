@@ -23,11 +23,6 @@ class User (UUIDPrimaryKeyMixin, TimestampMixin, Base):
     avatar_url: Mapped[str | None] = mapped_column(String(500), nullable=True)
 
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, server_default="true",nullable=False)
-
-    refreshtokens: Mapped[list["RefreshToken"]] = relationship(
-        back_populates="user",
-        cascade="all, delete-orphan",
-    )
     articles: Mapped[list["Article"]] = relationship(
         back_populates="author",
         cascade="all, delete-orphan",
@@ -45,4 +40,8 @@ class User (UUIDPrimaryKeyMixin, TimestampMixin, Base):
     likes: Mapped[list["ArticleLike"]] = relationship(
         back_populates="user",
         cascade="all, delete-orphan",
+    )
+    refresh_tokens: Mapped[list["RefreshToken"]] = relationship(
+    back_populates="user",
+    cascade="all, delete-orphan",
     )

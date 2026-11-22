@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 class ArticleSection(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     __tablename__ = "article_section"
     __table_args__ = (
-        UniqueConstraint("article_id", "sort_order", name="uq_article_section_article_sort_order"),
+        UniqueConstraint("article_id", "position", name="uq_article_section_article_position"),
     )
 
     article_id: Mapped[uuid.UUID] = mapped_column(
@@ -26,11 +26,11 @@ class ArticleSection(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     )
     heading: Mapped[str] = mapped_column(String(200), nullable=False)
     body: Mapped[str | None] = mapped_column(Text, nullable=True)
-    sort_order: Mapped[int] = mapped_column(Integer, nullable=False)
+    position: Mapped[int] = mapped_column(Integer, nullable=False)
 
     article: Mapped["Article"] = relationship(back_populates="sections")
     blocks: Mapped[list["ContentBlock"]] = relationship(
         back_populates="section",
         cascade="all, delete-orphan",
-        order_by="ContentBlock.sort_order",
+        order_by="ContentBlock.position",
     )
